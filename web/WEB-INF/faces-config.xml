@@ -3,5 +3,21 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
+    <navigation-rule>
+        <from-view-id>/query.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{result.toHomePage}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/result.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/result.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{result.toQueryPage}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/query.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

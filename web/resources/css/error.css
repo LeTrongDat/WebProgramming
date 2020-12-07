@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "quite magic regular";
+    src: url("#{resource['fonts/quite_magical/Quite Magical - TTF.ttf']}");
+}
+* {
+    font-family: "quite magic regular", sans-serif;
+    font-weight: normal;
+    box-sizing: border-box;
+    font-size: xx-large;
+}
+
+.error-container {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -100%);
+}
+
+span {
+    color: red;
+}
+
+body {
+    background-image: url(../image/index.png);
+}
+
+.back-btn {
+    margin-top: 20px;
+}
+.back-btn:hover {
+    cursor: pointer;
+}

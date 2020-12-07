@@ -17,7 +17,7 @@ public class Query implements Serializable {
     private static final long serialVersionUID = 8442671044445353433L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private Double x;

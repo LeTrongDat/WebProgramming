@@ -54,9 +54,7 @@ public class Result implements Serializable {
         return ("query");
     }
 
-    public String toHomePage() {
-        return ("index");
-    }
+    public String toHomePage() { return ("index"); }
 
     private void save(Query query) {
         query.getResult();
