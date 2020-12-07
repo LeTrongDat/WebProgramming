@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://java.sun.com/jsf/composite/components"
+>
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <h:outputStylesheet library="css" name="querypage.css"></h:outputStylesheet>
+    <title>Home page</title>
+</h:head>
+<h:body styleClass="body">
+    <div class="bg-image"></div>
+    <h:panelGrid id="table" columns="2" cellspacing="10" cellpadding="2" border="1" styleClass="bg-text">
+        <f:facet name="header">
+            <comp:intro author="Le Trong Dat" group="P3231" variant="2746"></comp:intro>
+        </f:facet>
+        <comp:description></comp:description>
+        <comp:form></comp:form>
+        <comp:result dataset="#{result.queries}"></comp:result>
+    </h:panelGrid>
+</h:body>
+</html>

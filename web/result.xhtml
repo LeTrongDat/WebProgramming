@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+    <title>Result</title>
+    <h:outputStylesheet library="css" name="response.css"></h:outputStylesheet>
+</h:head>
+<h:body styleClass="body">
+    <div class="header">
+        <h2>Queries Result</h2>
+    </div>
+    <div>
+        <p class="col-75 error" id="x-err"></p>
+    </div>
+    <div>
+        <h:dataTable var="q" value="#{result.queries}" rowClasses="row" styleClass="table">
+            <h:column>
+                <f:facet name="header">Point x</f:facet>
+                #{q.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Point y</f:facet>
+                #{q.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Radius</f:facet>
+                #{q.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Result (Point lies inside the area?)</f:facet>
+                #{q.result}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Execution time</f:facet>
+                #{q.executionTime}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Creation time</f:facet>
+                <h:outputText value="#{q.creationTime}">
+                    <f:convertDateTime pattern="hh:mm:ss"></f:convertDateTime>
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+    </div>
+    <div id="wrapper">
+        <h:form>
+            <h:commandButton action="#{result.clear}" value="Clear" styleClass="back-btn"></h:commandButton>
+        </h:form>
+        <h:form>
+            <h:commandButton action="#{result.toQueryPage}" value="Back" styleClass="back-btn"></h:commandButton>
+        </h:form>
+    </div>
+</h:body>
+</html>

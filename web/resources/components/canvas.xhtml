@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<h:head>This is interactive coordinates</h:head>
+<h:body>
+    <composite:interface>
+        <composite:attribute name="x"></composite:attribute>
+        <composite:attribute name="y"></composite:attribute>
+        <composite:attribute name="r"></composite:attribute>
+    </composite:interface>
+
+    <composite:implementation>
+        <h:panelGroup>
+<!--            <svg version="1.1"-->
+<!--                 baseProfile="full"-->
+<!--                 width="300" height="300"-->
+<!--                 xmlns="http://www.w3.org/2000/svg">-->
+<!--                <circle id="circle1" cx="150" cy="150" r="50" style="fill: blue;-->
+<!--                transition: all 2s ease"></circle>-->
+<!--            </svg>-->
+<!--            <h:outputScript>-->
+<!--                function setAttributes(el, attrs) {-->
+<!--                    for(var key in attrs) {-->
+<!--                    el.setAttribute(key, attrs[key]);-->
+<!--                    }-->
+<!--                }-->
+<!--                var animateElm = document.getElementById("animate");-->
+<!--                if (animateElm) animateElm.remove();-->
+<!--                var elm = document.createElement("animate");-->
+<!--                setAttributes(elm, {-->
+<!--                    id: "circle1",-->
+<!--                    attributeName: "r",-->
+<!--                    values: "0; #{cc.attrs.y * 20}",-->
+<!--                    dur: "10s",-->
+<!--                    repeatCount: "infinite"-->
+<!--                })-->
+<!--                document.getElementById("svg").appendChild(elm);-->
+
+
+<!--            </h:outputScript>-->
+
+<!--            <canvas id="myCanvas" width="300" height="300" style="border: 1px solid #d3d3d3"-->
+<!--                    data-x="#{cc.attrs.x}"-->
+<!--                    data-y="#{cc.attrs.y}"-->
+<!--                    data-r="#{cc.attrs.r}"></canvas>-->
+<!--            <p class="error" id="canvas-err"></p>-->
+<!--            <h:outputScript library="javascript" name="graphics.js"></h:outputScript>-->
+        </h:panelGroup>
+    </composite:implementation>
+</h:body>
+</html>
+
+<!--        let x, y, radius;-->
+<!--        let rEfficient = 5 / 6;-->
+<!--        let canvas = document.getElementById("myCanvas");-->
+<!--        let ctx = canvas.getContext("2d");-->
+<!--        let [maxX, maxY] = [canvas.width, canvas.height];-->
+<!--        let [xCenter, yCenter] = [maxX / 2, maxY / 2];-->
+<!--        let R = maxX / 2 * rEfficient;-->
+
+<!--        // -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Subjects &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--        let Ox = [[0, yCenter], [maxX, yCenter]];-->
+<!--        let Oy = [[xCenter, maxY], [xCenter, 0]];-->
+<!--        let xArrow = [[maxX - 10, yCenter - 5], [maxX, yCenter], [maxX - 10, yCenter + 5]];-->
+<!--        let yArrow = [[xCenter - 5, 10], [xCenter, 0], [xCenter + 5, 10]];-->
+<!--        let milestones = [];-->
+<!--        for (let i = xCenter - R; i != xCenter + R +R/2; i += R / 2) {-->
+<!--        milestones.push([[i, yCenter - 2], [i, yCenter + 2]]);-->
+<!--        milestones.push([[xCenter - 2, i], [xCenter + 2, i]]);-->
+<!--        }-->
+<!--        ;-->
+<!--        let arcs = [xCenter, yCenter, R, Math.PI, 1.5 * Math.PI];-->
+<!--        let rect = [xCenter, yCenter - R, R, R];-->
+<!--        let tri = [[xCenter, yCenter], [xCenter, yCenter + R / 2], [xCenter + R / 2, yCenter]];-->
+<!--        let rText = [];-->
+<!--        for (let i = xCenter - R; i != xCenter + R +2*R; i += 2 * R) {-->
+<!--        rText.push([i + 5, yCenter - 5]);-->
+<!--        rText.push([yCenter + 5, i - 5]);-->
+<!--        }-->
+<!--        ;-->
+<!--        let r2Text = [];-->
+<!--        for (let i = xCenter - R / 2; i != xCenter + R / 2 +R; i += R) {-->
+<!--        r2Text.push([i + 5, yCenter - 5]);-->
+<!--        r2Text.push([yCenter + 5, i - 5]);-->
+<!--        }-->
+<!--        ;-->
+
+<!--        // -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Draw function &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--        let drawLine = function (points) {-->
+<!--        for (let point of points) {-->
+<!--        if (point === points[0]) ctx.moveTo(...point);-->
+<!--        else ctx.lineTo(...point);-->
+<!--        }-->
+<!--        };-->
+<!--        let drawArcs = function (arc) {-->
+<!--        ctx.moveTo(xCenter, yCenter);-->
+<!--        ctx.arc(...arc);-->
+<!--        };-->
+<!--        let drawRect = function (rect) {-->
+<!--        ctx.rect(...rect);-->
+<!--        };-->
+
+<!--        // &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Drawing subjects -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--        ctx.fillStyle = "rgb(51, 153, 255, 0.3)";-->
+
+<!--        drawArcs(arcs);-->
+<!--        drawRect(rect);-->
+<!--        drawLine(tri);-->
+<!--        ctx.fill();-->
+
+<!--        drawLine(Ox);-->
+<!--        drawLine(Oy);-->
+<!--        drawLine(xArrow);-->
+<!--        drawLine(yArrow);-->
+<!--        for (let milestone of milestones) drawLine(milestone);-->
+<!--        for (let point of rText) ctx.strokeText("R", ...point);-->
+<!--        for (let point of r2Text) ctx.strokeText("R/2", ...point);-->
+
+<!--        ctx.stroke();-->
+
+<!--        function getCursorPosition(canvas, event) {-->
+<!--        const rect = canvas.getBoundingClientRect();-->
+<!--        let xArr = [], yArr = [];-->
+<!--        for (let i = 0; i != radius.length; i++) {-->
+<!--        let x = (event.clientX - xCenter - rect.left) / R * radius[i];-->
+<!--        let y = (yCenter - event.clientY + rect.top) / R * radius[i];-->
+<!--        xArr.push(x);-->
+<!--        yArr.push(y);-->
+<!--        }-->
+
+<!--        ctx.beginPath();-->
+<!--        ctx.fillStyle = "red";-->
+<!--        ctx.arc(event.clientX - rect.left, event.clientY - rect.top, 3, 0, 2 * Math.PI);-->
+<!--        ctx.fill();-->
+<!--        ctx.closePath();-->
+<!--        redirect({x: xArr.join(","), y: yArr.join(","), radius}, "/lab-2_war/data-process");-->
+<!--        };-->
+
+<!--        function redirect(body, url) {-->
+<!--        let form = document.createElement("form");-->
+<!--        document.body.appendChild(form);-->
+<!--        form.method = "POST";-->
+<!--        form.action = url;-->
+<!--        for (let [key, value] of Object.entries(body)) {-->
+<!--        let inpElm = getInputElm({-->
+<!--        type: "hidden",-->
+<!--        value: value,-->
+<!--        name: key,-->
+<!--        });-->
+<!--        form.appendChild(inpElm);-->
+<!--        }-->
+<!--        form.submit();-->
+<!--        }-->
+<!--        document.querySelector('canvas').addEventListener('mousedown', function (e) {-->
+<!--        console.log("Mousedown Event");-->
+<!--        [x, y, radius] = [-->
+<!--        parseFloat(canvas.getAttribute("data-x")),-->
+<!--        parseFloat(canvas.getAttribute("data-y")),-->
+<!--        parseFloat(canvas.getAttribute("data-r"))-->
+<!--        ];-->
+<!--        console.log(x, y, radius);-->
+
+<!--        if (!radius) {-->
+<!--        let err = document.getElementById("canvas-err");-->
+<!--        err.innerText = "It's impossible to determine coordinate of the point without radius value";-->
+<!--        return;-->
+<!--        }-->
+<!--        getCursorPosition(document.querySelector('canvas'), e);-->
+<!--        });-->

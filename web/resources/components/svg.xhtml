@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head></h:head>
+<h:body>
+    <composite:interface>
+        <composite:attribute name="x"></composite:attribute>
+        <composite:attribute name="y"></composite:attribute>
+        <composite:attribute name="r"></composite:attribute>
+        <composite:attribute name="inside"></composite:attribute>
+        <composite:attribute name="interactiveX"></composite:attribute>
+        <composite:attribute name="interactiveY"></composite:attribute>
+        <composite:attribute name="interactiveAction" method-signature="void interactiveAction()"></composite:attribute>
+        <composite:attribute name="width" default="300"></composite:attribute>
+        <composite:attribute name="height" default="300"></composite:attribute>
+        <composite:attribute name="unit" default="30"></composite:attribute>
+        <composite:attribute name="xO" default="150"></composite:attribute>
+        <composite:attribute name="yO" default="150"></composite:attribute>
+        <composite:attribute name="minX" default="-4"></composite:attribute>
+        <composite:attribute name="maxX" default="4"></composite:attribute>
+        <composite:attribute name="minY" default="-4"></composite:attribute>
+        <composite:attribute name="maxY" default="4"></composite:attribute>
+    </composite:interface>
+    <composite:implementation>
+        <h:panelGroup>
+            <h:outputStylesheet>
+                .st0{fill:none;stroke:#231F20;stroke-width:0.75;stroke-miterlimit:10;}
+                .st1{fill:#231F20;}
+                .st2{opacity:0.5;}
+                .st3{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+                .st4{font-family:'quite magic regular';}
+                .st5{font-size:16px;}
+                .st6{font-size:12px;}
+                g { stroke: black; stroke-width: 2px; }
+            </h:outputStylesheet>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                 width="300" height="300" xml:space="preserve">
+                <g>
+                    <line class="st0" x1="5" y1="150" x2="295" y2="150"/>
+                    <line class="st0" x1="150" y1="5" x2="150" y2="295"/>
+                    <g>
+                        <path class="st1" d="M150,0c-1.36,7.49-3.83,10.13-3.83,10.13c1.62-0.68,3.83-0.68,3.83-0.68s2.21,0,3.83,0.68
+            C153.83,10.13,151.36,7.49,150,0z"/>
+                    </g>
+                    <g>
+                        <path class="st1" d="M300,150c-7.49-1.36-10.13-3.83-10.13-3.83c0.68,1.62,0.68,3.83,0.68,3.83s0,2.21-0.68,3.83
+            C289.87,153.83,292.51,151.36,300,150z"/>
+                    </g>
+                    <circle class="st1" cx="150" cy="150" r="1.5"/>
+                    <rect x="150" y="#{150-cc.attrs.r*30}" height="#{cc.attrs.r*30}" width="#{cc.attrs.r*30}"
+                    style="fill: cornflowerblue"></rect>
+                    <g>
+                        <path d="M150 #{150-cc.attrs.r*30} A#{cc.attrs.r*30} #{cc.attrs.r*30} 0 0 0 #{150-cc.attrs.r*30} 150 L150 150Z"
+                        style="fill: cornflowerblue"></path>
+                    </g>
+                    <g>
+                        <path d="M150 150 L#{150+cc.attrs.r*30} 150 L150 #{150+cc.attrs.r*15}Z" style="fill: cornflowerblue"></path>
+                    </g>
+                </g>
+                <circle id="point"
+                        cx="#{cc.attrs.x eq null ? 0 : 150+cc.attrs.x*30}"
+                        cy="#{cc.attrs.y eq null ? 0 : 150-cc.attrs.y*30}"
+                        r="#{(cc.attrs.x eq null or cc.attrs.y eq null) ? 0 : '3px'}"
+                        fill="#{(cc.attrs.inside ne null and cc.attrs.inside eq 'Yes') ? 'blue' : 'red'}">
+                </circle>
+                <g class="st2">
+                    <rect x="150" y="120" class="st3" width="30" height="30"/>
+                    <rect x="180" y="120" class="st3" width="30" height="30"/>
+                    <rect x="210" y="120" class="st3" width="30" height="30"/>
+                    <rect x="240" y="120" class="st3" width="30" height="30"/>
+                    <rect x="30" y="120" class="st3" width="30" height="30"/>
+                    <rect x="60" y="120" class="st3" width="30" height="30"/>
+                    <rect x="90" y="120" class="st3" width="30" height="30"/>
+                    <rect x="120" y="120" class="st3" width="30" height="30"/>
+                    <rect x="150" y="90" class="st3" width="30" height="30"/>
+                    <rect x="180" y="90" class="st3" width="30" height="30"/>
+                    <rect x="210" y="90" class="st3" width="30" height="30"/>
+                    <rect x="240" y="90" class="st3" width="30" height="30"/>
+                    <rect x="30" y="90" class="st3" width="30" height="30"/>
+                    <rect x="60" y="90" class="st3" width="30" height="30"/>
+                    <rect x="90" y="90" class="st3" width="30" height="30"/>
+                    <rect x="120" y="90" class="st3" width="30" height="30"/>
+                    <rect x="150" y="60" class="st3" width="30" height="30"/>
+                    <rect x="180" y="60" class="st3" width="30" height="30"/>
+                    <rect x="210" y="60" class="st3" width="30" height="30"/>
+                    <rect x="240" y="60" class="st3" width="30" height="30"/>
+                    <rect x="30" y="60" class="st3" width="30" height="30"/>
+                    <rect x="60" y="60" class="st3" width="30" height="30"/>
+                    <rect x="90" y="60" class="st3" width="30" height="30"/>
+                    <rect x="120" y="60" class="st3" width="30" height="30"/>
+                    <rect x="150" y="30" class="st3" width="30" height="30"/>
+                    <rect x="180" y="30" class="st3" width="30" height="30"/>
+                    <rect x="210" y="30" class="st3" width="30" height="30"/>
+                    <rect x="240" y="30" class="st3" width="30" height="30"/>
+                    <rect x="30" y="30" class="st3" width="30" height="30"/>
+                    <rect x="60" y="30" class="st3" width="30" height="30"/>
+                    <rect x="90" y="30" class="st3" width="30" height="30"/>
+                    <rect x="120" y="30" class="st3" width="30" height="30"/>
+                    <rect x="150" y="150" class="st3" width="30" height="30"/>
+                    <rect x="180" y="150" class="st3" width="30" height="30"/>
+                    <rect x="210" y="150" class="st3" width="30" height="30"/>
+                    <rect x="240" y="150" class="st3" width="30" height="30"/>
+                    <rect x="30" y="150" class="st3" width="30" height="30"/>
+                    <rect x="60" y="150" class="st3" width="30" height="30"/>
+                    <rect x="90" y="150" class="st3" width="30" height="30"/>
+                    <rect x="120" y="150" class="st3" width="30" height="30"/>
+                    <rect x="150" y="180" class="st3" width="30" height="30"/>
+                    <rect x="180" y="180" class="st3" width="30" height="30"/>
+                    <rect x="210" y="180" class="st3" width="30" height="30"/>
+                    <rect x="240" y="180" class="st3" width="30" height="30"/>
+                    <rect x="30" y="180" class="st3" width="30" height="30"/>
+                    <rect x="60" y="180" class="st3" width="30" height="30"/>
+                    <rect x="90" y="180" class="st3" width="30" height="30"/>
+                    <rect x="120" y="180" class="st3" width="30" height="30"/>
+                    <rect x="150" y="210" class="st3" width="30" height="30"/>
+                    <rect x="180" y="210" class="st3" width="30" height="30"/>
+                    <rect x="210" y="210" class="st3" width="30" height="30"/>
+                    <rect x="240" y="210" class="st3" width="30" height="30"/>
+                    <rect x="30" y="210" class="st3" width="30" height="30"/>
+                    <rect x="60" y="210" class="st3" width="30" height="30"/>
+                    <rect x="90" y="210" class="st3" width="30" height="30"/>
+                    <rect x="120" y="210" class="st3" width="30" height="30"/>
+                    <rect x="150" y="240" class="st3" width="30" height="30"/>
+                    <rect x="180" y="240" class="st3" width="30" height="30"/>
+                    <rect x="210" y="240" class="st3" width="30" height="30"/>
+                    <rect x="240" y="240" class="st3" width="30" height="30"/>
+                    <rect x="30" y="240" class="st3" width="30" height="30"/>
+                    <rect x="60" y="240" class="st3" width="30" height="30"/>
+                    <rect x="90" y="240" class="st3" width="30" height="30"/>
+                    <rect x="120" y="240" class="st3" width="30" height="30"/>
+                </g>
+                <text transform="matrix(1 0 0 1 135.0001 10.1274)" class="st4 st5">Y</text>
+                <text transform="matrix(1 0 0 1 289.8723 170.4893)" class="st4 st5">X</text>
+                <text transform="matrix(1 0 0 1 142.4003 158.6172)" class="st4 st6">0</text>
+                <text transform="matrix(1 0 0 1 112.4721 158.6172)" class="st4 st6">-1</text>
+                <text transform="matrix(1 0 0 1 80.2157 158.6172)" class="st4 st6">-2</text>
+                <text transform="matrix(1 0 0 1 50.5878 158.6172)" class="st4 st6">-3</text>
+                <text transform="matrix(1 0 0 1 20.3002 158.6172)" class="st4 st6">-4</text>
+                <text transform="matrix(1 0 0 1 175.0518 158.6172)" class="st4 st6">1</text>
+                <text transform="matrix(1 0 0 1 145.0522 129.9999)" class="st4 st6">1</text>
+                <text transform="matrix(1 0 0 1 142.4721 189.9999)" class="st4 st6">-1</text>
+                <text transform="matrix(1 0 0 1 140.2158 219.9999)" class="st4 st6">-2</text>
+                <text transform="matrix(1 0 0 1 140.5879 249.9999)" class="st4 st6">-3</text>
+                <text transform="matrix(1 0 0 1 140.3003 279.9999)" class="st4 st6">-4</text>
+                <text transform="matrix(1 0 0 1 142.7959 99.9999)" class="st4 st6">2</text>
+                <text transform="matrix(1 0 0 1 143.1679 69.9999)" class="st4 st6">3</text>
+                <text transform="matrix(1 0 0 1 142.8799 39.9999)" class="st4 st6">4</text>
+                <text transform="matrix(1 0 0 1 202.796 158.6172)" class="st4 st6">2</text>
+                <text transform="matrix(1 0 0 1 233.1676 158.6172)" class="st4 st6">3</text>
+                <text transform="matrix(1 0 0 1 262.8799 158.6172)" class="st4 st6">4</text>
+            </svg>
+            <h:form id="mouse-coor">
+                <h:inputHidden id="mouse-x" value="#{cc.attrs.interactiveX}" >
+                    <f:converter converterId="javax.faces.Double"/>
+                </h:inputHidden>
+                <h:inputHidden id="mouse-y" value="#{cc.attrs.interactiveY}" >
+                    <f:converter converterId="javax.faces.Double"/>
+                </h:inputHidden>
+            </h:form>
+            <p:ajax form="mouse-coor" event="click" listener="#{cc.attrs.interactiveAction}"/>
+        </h:panelGroup>
+        <h:outputScript library="javascript" name="eventHandlers.js"></h:outputScript>
+    </composite:implementation>
+</h:body>
+</html>

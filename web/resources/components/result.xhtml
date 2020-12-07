@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+>
+<h:head> This is result table </h:head>
+<h:body>
+    <composite:interface>
+        <composite:attribute name="dataset"></composite:attribute>
+    </composite:interface>
+
+    <composite:implementation>
+        <h:dataTable var="res" value="#{cc.attrs.dataset}" border="5">
+            <h:column>
+                <f:facet name="header">Point X</f:facet>
+                #{res.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Point Y</f:facet>
+                #{res.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Radius</f:facet>
+                #{res.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Hit or not?</f:facet>
+                #{res.result}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Execution time</f:facet>
+                #{res.executionTime}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Creation time</f:facet>
+                #{res.creationTime}
+            </h:column>
+            <f:facet name="caption">Result Table</f:facet>
+        </h:dataTable>
+    </composite:implementation>
+</h:body>
+</html>

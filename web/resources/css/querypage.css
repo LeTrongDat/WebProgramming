@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "quite magic regular";
+    src: url("#{resource['fonts/quite_magical/Quite Magical - TTF.ttf']}");
+}
+
+* {
+    font-family: "quite magic regular", "atlas of the magi", serif;
+    font-weight: normal;
+    box-sizing: border-box;
+}
+
+.body {
+    background-color: white;
+    /*background-image: url("#{resource['images/planets.jpg']}");*/
+}
+
+.bg-image {
+    /* The image used */
+    background-image: url("#{resource['images/planets.jpg']}");
+
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    position: absolute;
+    z-index: 11;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header {
+    top: 0;
+    font-size: 1.8em;
+    padding-bottom: 0.1%;
+}
+
+footer {
+    bottom: 0;
+}
+
+.header, footer {
+    z-index: 10;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+#content {
+    /*margin: 130px 17% 100px 17%;*/
+    font-size: 1.3em;
+    padding: 9% 21% 6% 25%;
+}
+
+#description {
+    /*text-align: center;*/
+    background-color: whitesmoke;
+    border-radius: 8%;
+    padding: 1% 3% 2% 3%;
+    margin-bottom: 2%;
+}
+
+#description h2 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#description:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#area {
+    text-align: center;
+}
+
+#constraints {
+    vertical-align: top;
+}
+
+.back-btn, #wrapper {
+    margin-top: 20px;
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:hover {
+    cursor: pointer;
+}
+

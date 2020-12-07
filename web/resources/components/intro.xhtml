@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<h:head>This is introduction of author</h:head>
+<h:body>
+    <composite:interface>
+        <composite:attribute name="author" required="true"></composite:attribute>
+        <composite:attribute name="group" required="true"></composite:attribute>
+        <composite:attribute name="variant" required="true"></composite:attribute>
+        <composite:attribute name="github" required="false"></composite:attribute>
+    </composite:interface>
+
+    <composite:implementation>
+        <h:panelGroup id="intro" style="text-align: left; padding-left: 30px">
+            <h:outputText value="Name: #{cc.attrs.author}"></h:outputText>
+            <br></br>
+            <h:outputText value="Group: #{cc.attrs.group}"></h:outputText>
+            <br></br>
+            <h:outputText value="Variant: #{cc.attrs.variant}"></h:outputText>
+            <br></br>
+            <h:outputText rendered="#{not empty cc.attrs.github}">
+                Link to github:<h:outputLink value="#{cc.attrs.github}">#{cc.attrs.github}</h:outputLink>
+            </h:outputText>
+        </h:panelGroup>
+    </composite:implementation>
+</h:body>
+</html>

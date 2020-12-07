@@ -1,0 +1,83 @@
+@font-face {
+    font-family: "quite magic regular";
+    src: url("#{resource['fonts/quite_magical/Quite Magical - TTF.ttf']}");
+}
+
+* {
+    font-family: "quite magic regular", sans-serif;
+    font-weight: normal;
+    box-sizing: border-box;
+}
+
+.body {
+    background-color: whitesmoke;
+    font-size: larger;
+    padding-left: 15%;
+    padding-right: 15%;
+    /*padding-bottom: 15%;*/
+}
+
+.header h2 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.table {
+    overflow: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table thead, table tbody {
+    display: block;
+    width: 100%;
+}
+
+table tbody {
+    overflow: auto;
+    height: 490px;
+}
+
+th, td {
+    text-align: center;
+    border: 1px solid black;
+    padding: 15px;
+    width: 165px;
+}
+
+th {
+    background-color: #ebebeb;
+}
+
+div p {
+    text-align: center;
+    font-size: larger;
+}
+
+.row:hover {
+    cursor: pointer;
+    background-color: lightskyblue !important;
+    color: white;
+    transition: 0.3s;
+}
+
+.row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.error {
+    color: red;
+    /*transition: opacity 2s ease-in;*/
+}
+
+.back-btn, #wrapper {
+    margin-top: 20px;
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:comp="http://java.sun.com/jsf/composite/components">
+<h:head>
+    <meta name="description" content="Lab 1 web programming in itmo university"></meta>
+    <meta name="author" content="Le Trong Dat"></meta>
+    <meta name="keywords" content="web_programming, php, css, javascript"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <h:outputStylesheet library="css" name="querypage.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="form.css"></h:outputStylesheet>
+    <title>Form</title>
+</h:head>
+<h:body>
+    <!--<div class="bg-image"></div>-->
+    <div class="header">
+        <div>Web programming - Laboratory №3</div>
+        <div>Le Trong Dat, P3231</div>
+        <div>Variant: 2746</div>
+        <div>Link to Github:
+            <a href="https://github.com/LeTrongDat/Web-programming">https://github.com/LeTrongDat/Web-programming</a>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="description">
+            <h2>Lab's task</h2>
+            <p>
+                The script should perform data validation and return an HTML page with a table containing the obtained parameters
+                and the result of calculations - the fact of hitting or not hitting a point in the area.
+                Previous results should be persisted between queries and displayed in a table.
+            </p>
+            <table>
+                <tr>
+                    <th>Constraints</th>
+                    <th style="padding-left: 50px">Area for checking</th>
+                </tr>
+                <tr>
+                    <td id="constraints">
+                        <ul>
+                            <li>Value of X should be in {-2, -1.5, -1, -0.5, 0, 0.5, 1.5, 2, 2.5}</li>
+                            <li>Value of Y should be in the range (-5, 5)</li>
+                            <li>Value of R should be in {1; 1.5; 2; 2.5; 3}</li>
+                        </ul>
+                    </td>
+                    <td id="area">
+                        <div style="margin-left: 50px">
+                            <h:panelGroup id="svg">
+                                <comp:svg x="#{result.query.x}"
+                                          y="#{result.query.y}"
+                                          r="#{result.query.r}"
+                                          inside="#{result.query['result']}"
+                                          interactiveX="#{result.interactiveX}"
+                                          interactiveY="#{result.interactiveY}"
+                                          interactiveAction="#{result.interactiveAction}"></comp:svg>
+                                <p id="svg-err" class="error"></p>
+                            </h:panelGroup>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="container">
+            <h2>Data form</h2>
+            <h:form id="data-form">
+                <div class="row">
+                    <div class="col-25"><h:outputLabel for="x-input">Point X</h:outputLabel></div>
+                    <div class="col-75">
+                        <h:selectOneRadio id="x-input"
+                                          value="#{result.query.x}"
+                                          required="true"
+                                          requiredMessage="Point X is required">
+                            <f:selectItems value="#{pointX.optionItems}"></f:selectItems>
+                            <f:ajax event="click" execute="@this" render="radius-err x-err svg"></f:ajax>
+                        </h:selectOneRadio>
+                    </div>
+                    <p class="col-75 error">
+                        <h:message id="x-err" for="x-input"></h:message>
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-25"><h:outputLabel for="y-input">Point Y</h:outputLabel></div>
+                    <div class="col-75">
+                        <h:inputText id="y-input"
+                                     value="#{result.query.y}"
+                                     required="true"
+                                     requiredMessage="Point Y is required"
+                                     validatorMessage="Point Y is not a number in range (-5; 5)"
+                                     converterMessage="Point Y is not a number in range (-5; 5)">
+                            <f:validateDoubleRange minimum="-5" maximum="5"></f:validateDoubleRange>
+                            <f:ajax event="keyup" execute="@this" render="y-err svg"></f:ajax>
+                        </h:inputText>
+                    </div>
+                    <p class="col-75 error">
+                        <h:message for="y-input" id="y-err"></h:message>
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-25"><h:outputLabel for="radius-input">Radius</h:outputLabel></div>
+                    <div class="col-75">
+                        <p:spinner id="radius-input"
+                                   value="#{result.query.r}"
+                                   required="true"
+                                   min="1" max="3"
+                                   stepFactor="0.5"
+                                   style="!important; padding-right: 10px"
+                                   requiredMessage="Radius is required">
+                            <f:ajax event="change" execute="@this" render="radius-err svg"></f:ajax>
+                        </p:spinner>
+                    </div>
+                    <p class="col-75 error">
+                        <h:message for="radius-input" id="radius-err"></h:message>
+                    </p>
+                </div>
+                <div class="row">
+                    <h:commandButton id="submit" value="Submit" action="#{result.process}"></h:commandButton>
+                </div>
+            </h:form>
+        </div>
+        <div id="wrapper">
+            <h:form>
+                <h:commandButton action="#{result.toHomePage}" value="Home" styleClass="back-btn"></h:commandButton>
+            </h:form>
+        </div>
+    </div>
+    <footer>
+        <p>Address: 43 Nguyen Phong Sac Str., Ha Noi city, Viet Nam</p>
+        <p>Contact: <a href="mailto:dat.lt@teko.vn">dat.lt@teko.vn</a></p>
+    </footer>
+</h:body>
+</html>

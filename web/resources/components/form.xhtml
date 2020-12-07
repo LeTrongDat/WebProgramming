@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>This is form</h:head>
+<h:body>
+    <composite:interface></composite:interface>
+    <composite:implementation>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="x">Point X</h:outputLabel>
+                <h:panelGroup>
+                    <h:selectOneRadio id="x" value="#{pointX.option}">
+                        <f:selectItems value="#{pointX.optionItems}"></f:selectItems>
+                    </h:selectOneRadio>
+                    <h:message for="x"></h:message>
+                </h:panelGroup>
+
+                <h:outputLabel for="y">Point Y</h:outputLabel>
+                <h:panelGroup>
+                    <h:inputText id="y">
+                        <f:validateDoubleRange minimum="-5" maximum="5"></f:validateDoubleRange>
+                    </h:inputText>
+                    <h:message for="y"></h:message>
+                </h:panelGroup>
+
+                <h:outputLabel for="r">Radius</h:outputLabel>
+                <h:panelGroup>
+                    <p:spinner id="r" min="1" max="3" stepFactor="0.5"></p:spinner>
+                    <h:message for="r"></h:message>
+                </h:panelGroup>
+
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit" value="Submit"/>
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </composite:implementation>
+</h:body>
+</html>
