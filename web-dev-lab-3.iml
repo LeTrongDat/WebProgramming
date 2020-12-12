@@ -17,6 +17,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="default" />
           <factory-entry name="my-persistence-unit" value="869eb4f8-c166-4cf4-9a20-c155f37883c1" />
           <factory-entry name="web-dev-lab-3" value="869eb4f8-c166-4cf4-9a20-c155f37883c1" />
         </datasource-mapping>

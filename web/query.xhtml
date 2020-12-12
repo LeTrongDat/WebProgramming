@@ -6,22 +6,21 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:comp="http://java.sun.com/jsf/composite/components">
 <h:head>
-    <meta name="description" content="Lab 1 web programming in itmo university"></meta>
+    <meta name="description" content="Lab 3 web programming in itmo university"></meta>
     <meta name="author" content="Le Trong Dat"></meta>
-    <meta name="keywords" content="web_programming, php, css, javascript"></meta>
+    <meta name="keywords" content="web_programming, jsf, css, javascript"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
     <h:outputStylesheet library="css" name="querypage.css"></h:outputStylesheet>
     <h:outputStylesheet library="css" name="form.css"></h:outputStylesheet>
     <title>Form</title>
 </h:head>
 <h:body>
-    <!--<div class="bg-image"></div>-->
     <div class="header">
         <div>Web programming - Laboratory №3</div>
         <div>Le Trong Dat, P3231</div>
         <div>Variant: 2746</div>
         <div>Link to Github:
-            <a href="https://github.com/LeTrongDat/Web-programming">https://github.com/LeTrongDat/Web-programming</a>
+            <a href="https://github.com/LeTrongDat/WebProgramming">https://github.com/LeTrongDat/WebProgramming</a>
         </div>
     </div>
 
@@ -43,7 +42,7 @@
                         <ul>
                             <li>Value of X should be in {-2, -1.5, -1, -0.5, 0, 0.5, 1.5, 2, 2.5}</li>
                             <li>Value of Y should be in the range (-5, 5)</li>
-                            <li>Value of R should be in {1; 1.5; 2; 2.5; 3}</li>
+                            <li>Value of R should be in (1, 3)</li>
                         </ul>
                     </td>
                     <td id="area">
@@ -107,7 +106,11 @@
                                    min="1" max="3"
                                    stepFactor="0.5"
                                    style="!important; padding-right: 10px"
-                                   requiredMessage="Radius is required">
+                                   requiredMessage="Radius is required"
+                                   converterMessage="Radius should be a double"
+                                   validatorMessage="Radius shoule be a number in range (1; 3)">
+                            <f:validateDoubleRange minimum="1" maximum="3"></f:validateDoubleRange>
+                            <f:ajax event="keyup" execute="@this" render="radius-err svg"></f:ajax>
                             <f:ajax event="change" execute="@this" render="radius-err svg"></f:ajax>
                         </p:spinner>
                     </div>
