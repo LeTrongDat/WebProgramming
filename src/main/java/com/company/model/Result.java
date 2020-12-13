@@ -6,13 +6,13 @@ import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -25,8 +25,12 @@ import java.util.LinkedList;
 public class Result implements Serializable {
     private static final long serialVersionUID = 1475098483604448037L;
 
-    private EntityManagerFactory resultManagerFactory;
+    @PersistenceContext(unitName = "default")
     private EntityManager resultManager;
+
+    @Resource
+    private UserTransaction userTransaction;
+
     private Query query;
     private Double interactiveX;
     private Double interactiveY;
@@ -36,13 +40,12 @@ public class Result implements Serializable {
     @PostConstruct
     public void init() {
         query = new Query();
-        resultManagerFactory = Persistence.createEntityManagerFactory("default");
-        resultManager = resultManagerFactory.createEntityManager();
         queries = new LinkedList<>();
         queries.addAll(resultManager
                 .createQuery("SELECT q FROM Query q", Query.class)
                 .getResultList());
     }
+
     public String process() {
         save(query);
         queries.addFirst(query);
@@ -58,16 +61,18 @@ public class Result implements Serializable {
 
     private void save(Query query) {
         query.getResult();
-        resultManager.getTransaction().begin();
-        resultManager.persist(query);
-        resultManager.getTransaction().commit();
+        try {
+            userTransaction.begin();
+            resultManager.persist(query);
+            userTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @PreDestroy
     public void close() {
         reset();
-        resultManager.close();
-        resultManagerFactory.close();
     }
 
     public void reset() {
@@ -75,9 +80,13 @@ public class Result implements Serializable {
     }
 
     public void clear() {
-        resultManager.getTransaction().begin();
-        resultManager.createQuery("DELETE FROM Query q").executeUpdate();
-        resultManager.getTransaction().commit();
+        try {
+            userTransaction.begin();
+            resultManager.createQuery("DELETE FROM Query q").executeUpdate();
+            userTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         queries = new LinkedList<>();
     }
 
